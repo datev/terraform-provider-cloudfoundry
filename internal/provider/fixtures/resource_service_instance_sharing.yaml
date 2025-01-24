@@ -45,9 +45,9 @@ interactions:
             Strict-Transport-Security:
                 - max-age=31536000; includeSubDomains; preload;
             X-B3-Spanid:
-                - 59373d5023dbb353
+                - 5d39517517b023e0
             X-B3-Traceid:
-                - 84cc8d4bcdfa4ac559373d5023dbb353
+                - eb5c25e31153450e5d39517517b023e0
             X-Content-Type-Options:
                 - nosniff
             X-Download-Options:
@@ -61,14 +61,145 @@ interactions:
             X-Ratelimit-Remaining:
                 - "18000"
             X-Ratelimit-Reset:
-                - "1712556473"
+                - "1711364588"
             X-Runtime:
-                - "0.101878"
+                - "0.025567"
             X-Vcap-Request-Id:
-                - 84cc8d4b-cdfa-4ac5-5937-3d5023dbb353::8b035478-6f02-4a4f-b41d-51609a7c98f8
+                - eb5c25e3-1153-450e-5d39-517517b023e0::f68173e6-bc61-4835-a38a-100217e10639
             X-Xss-Protection:
                 - 1; mode=block
         status: 200 OK
         code: 200
         duration: 1.438484375s
-        
+    - id: 1
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: api.x.x.x.x.com
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer redacted
+            User-Agent:
+                - Go-CF-Client/3.0
+        url: https://api.x.x.x.x.com/v3/service_instances/5e2976bb-332e-41e1-8be3-53baafea9296/shared_spaces
+        method: GET
+      response:
+        proto: HTTP/2.0
+        proto_major: 2
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: -1
+        uncompressed: false
+        body: '{"data":[{"guid":"02c0cc92-6ecc-44b1-b7b2-096ca19ee143"}]}'
+        headers:
+            Content-Type:
+                - application/json; charset=utf-8
+            Date:
+                - Mon, 25 Mar 2024 10:39:34 GMT
+            Referrer-Policy:
+                - strict-origin-when-cross-origin
+            Server:
+                - nginx
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload;
+            X-B3-Spanid:
+                - 7031327687a56f81
+            X-B3-Traceid:
+                - de8d237a1f2045057031327687a56f81
+            X-Content-Type-Options:
+                - nosniff
+            X-Download-Options:
+                - noopen
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Permitted-Cross-Domain-Policies:
+                - none
+            X-Ratelimit-Limit:
+                - "20000"
+            X-Ratelimit-Remaining:
+                - "18000"
+            X-Ratelimit-Reset:
+                - "1711364588"
+            X-Runtime:
+                - "0.058984"
+            X-Vcap-Request-Id:
+                - de8d237a-1f20-4505-7031-327687a56f81::f3bea4eb-8c5a-432a-8d19-f256a2758e80
+            X-Xss-Protection:
+                - 1; mode=block
+        status: 200 OK
+        code: 200
+        duration: 225.980057ms
+    - id: 2
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: api.x.x.x.x.com
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Authorization:
+                - Bearer redacted
+            User-Agent:
+                - Go-CF-Client/3.0
+        url: https://api.x.x.x.x.com/v3/service_instances/5e2976bb-332e-41e1-8be3-53baafea9296/relationships/shared_spaces/02c0cc92-6ecc-44b1-b7b2-096ca19ee143
+        method: DELETE
+      response:
+        proto: HTTP/2.0
+        proto_major: 2
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: ""
+        headers:
+            Date:
+                - Mon, 25 Mar 2024 10:39:37 GMT
+            Referrer-Policy:
+                - strict-origin-when-cross-origin
+            Server:
+                - nginx
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload;
+            X-B3-Spanid:
+                - 705e6fa76fcf3408
+            X-B3-Traceid:
+                - 45373a79229e437c705e6fa76fcf3408
+            X-Content-Type-Options:
+                - nosniff
+            X-Download-Options:
+                - noopen
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Permitted-Cross-Domain-Policies:
+                - none
+            X-Ratelimit-Limit:
+                - "20000"
+            X-Ratelimit-Remaining:
+                - "18000"
+            X-Ratelimit-Reset:
+                - "1711364588"
+            X-Runtime:
+                - "0.030300"
+            X-Vcap-Request-Id:
+                - 45373a79-229e-437c-705e-6fa76fcf3408::d3a15966-63f3-4613-a6c5-25d1cdad8f07
+            X-Xss-Protection:
+                - 1; mode=block
+        status: 204 No Content
+        code: 204
+        duration: 204.222897ms
