@@ -84,39 +84,21 @@ func (r *serviceInstanceSharingResource) Create(ctx context.Context, req resourc
 		return
 	}
 
-	space, err := r.cfClient.Spaces.Single(ctx, &cfv3client.SpaceListOptions{
-		GUIDs: cfv3client.Filter{
-			Values: []string{plan.SpaceId.ValueString()},
-		},
-	})
-	if err != nil {
-		resp.Diagnostics.AddError("Error when trying to get a space:", err.Error())
-		return
-	}
-
-	serviceInstance, err := r.cfClient.ServiceInstances.Single(ctx, &cfv3client.ServiceInstanceListOptions{
-		GUIDs: cfv3client.Filter{
-			Values: []string{plan.ServiceInstanceId.ValueString()},
-		},
-	})
-	if err != nil {
-		resp.Diagnostics.AddError("Error finding given service instance", err.Error())
-		return
-	}
-
-	_, err = r.cfClient.ServiceInstances.ShareWithSpace(ctx, serviceInstance.GUID, space.GUID)
+	_, err := r.cfClient.ServiceInstances.ShareWithSpace(ctx, plan.ServiceInstanceId.ValueString(), plan.SpaceId.ValueString())
 	if err != nil {
 		resp.Diagnostics.AddError("Error sharing service instance with space", err.Error())
 		return
 	}
 
-	computedID := fmt.Sprintf("%s/%s", space.GUID, serviceInstance.GUID)
+	computedID := fmt.Sprintf("%s/%s", plan.ServiceInstanceId.ValueString(), plan.SpaceId.ValueString())
 
-	resp.State.Set(ctx, ServiceInstanceSharingType{
+	newState := ServiceInstanceSharingType{
 		Id:                types.StringValue(computedID),
 		ServiceInstanceId: plan.ServiceInstanceId,
 		SpaceId:           plan.SpaceId,
-	})
+	}
+
+	resp.Diagnostics.Append(resp.State.Set(ctx, &newState)...)
 }
 
 func (r *serviceInstanceSharingResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
@@ -130,7 +112,7 @@ func (r *serviceInstanceSharingResource) Read(ctx context.Context, req resource.
 
 	relationship, err := r.cfClient.ServiceInstances.GetSharedSpaceRelationships(ctx, data.ServiceInstanceId.ValueString())
 	if err != nil {
-		resp.Diagnostics.AddError("Error finding shared spaces for service instance", err.Error())
+		resp.Diagnostics.AddError("Error when getting shared spaces for service instance", err.Error())
 		return
 	}
 
