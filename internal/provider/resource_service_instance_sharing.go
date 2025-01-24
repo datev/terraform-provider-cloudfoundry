@@ -90,7 +90,7 @@ func (r *serviceInstanceSharingResource) Create(ctx context.Context, req resourc
 		},
 	})
 	if err != nil {
-		resp.Diagnostics.AddError("Error finding given space", err.Error())
+		resp.Diagnostics.AddError("Error when trying to get a space:", err.Error())
 		return
 	}
 
@@ -166,12 +166,12 @@ func (r *serviceInstanceSharingResource) Delete(ctx context.Context, req resourc
 }
 
 func mapRelationShipToType(relationship *cfv3resource.ServiceInstanceSharedSpaceRelationships, serviceInstanceId string) ServiceInstanceSharingType {
-	spaceItGetsSharedTo := types.StringValue(relationship.Data[0].GUID)
-	id := types.StringValue(fmt.Sprintf("%s/%s", serviceInstanceId, serviceInstanceId))
+	spaceItGetsSharedTo := relationship.Data[0].GUID
+	id := types.StringValue(serviceInstanceId + "/" + spaceItGetsSharedTo)
 
 	return ServiceInstanceSharingType{
 		Id:                id,
 		ServiceInstanceId: types.StringValue(serviceInstanceId),
-		SpaceId:           spaceItGetsSharedTo,
+		SpaceId:           types.StringValue(spaceItGetsSharedTo),
 	}
 }
