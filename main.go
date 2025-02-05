@@ -22,6 +22,8 @@ import (
 // Run the docs generation tool, check its repository for more information on how it works and how docs
 // can be customized.
 
+// bar
+
 func main() {
 	var debug bool
 

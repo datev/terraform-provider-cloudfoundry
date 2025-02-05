@@ -14,7 +14,7 @@ Check the [Authentication](/Authentication.md) documentation for supported appro
 
 ## Developing & Contributing to the Provider
 
-The [developer documentation](DEVELOPER.md) file is a basic outline on how to build and develop the provider. 
+The [developer documentation](DEVELOPER.md) file is a basic outline on how to build and develop the amazing provider. 
 
 For more information about how to contribute, the project structure, and additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).
 
